@@ -1,0 +1,12 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+import { cn } from "@/lib/utils";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }>;
+
+const { as: Tag, class: className, ...props } = Astro.props;
+---
+
+<Tag class={cn("py-4 border-b", className)} {...props}>
+  <slot />
+</Tag>
