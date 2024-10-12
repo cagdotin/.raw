@@ -2,7 +2,7 @@
 title: "Third post"
 description: "Lorem ipsum dolor sit amet"
 publishedAt: "Jul 22 2022"
-image: "/blog-placeholder-2.jpg"
+image: "/images/blog-placeholder-2.jpg"
 tags: ["dolor", "sit"]
 ---
 
