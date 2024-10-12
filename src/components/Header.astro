@@ -11,19 +11,19 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
   class="sticky top-0 z-10 bg-background font-mono"
   transition:persist
 >
-  <Container class="py-1">
+  <Container class="py-0 pr-0 border-t">
     <div class="flex justify-between items-center">
       <nav>
         <h2 class="font-bold"><a href="/">{SITE_TITLE}</a></h2>
       </nav>
 
-      <nav class="flex items-center gap-4">
-        <ul class="flex gap-4 text-xs uppercase">
-          <li><HeaderLink href="/">Home</HeaderLink></li>
-          <li><HeaderLink href="/about">About</HeaderLink></li>
-          <li><HeaderLink href="/blog">Blog</HeaderLink></li>
-        </ul>
-        <div>
+      <nav
+        class="flex jusify-center h-full uppercase font-mono tracking-wide text-xs"
+      >
+        <HeaderLink href="/">Home</HeaderLink>
+        <HeaderLink href="/about">About</HeaderLink>
+        <HeaderLink href="/blog">Blog</HeaderLink>
+        <div class="border-l">
           <ModeToggle client:load />
         </div>
       </nav>

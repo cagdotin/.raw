@@ -42,11 +42,16 @@ export function ModeToggle() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="font-mono text-xs lowercase" align="end">
+      <DropdownMenuContent
+        sideOffset={0}
+        alignOffset={-1}
+        className="font-mono text-xs lowercase"
+        align="end"
+      >
         {options.map(([key, value]) => (
           <DropdownMenuItem
             key={`theme-option-${key}`}
-            className="text-xs"
+            className="text-xs text-foreground/80"
             onClick={() => setThemeState(value)}
           >
             {key}

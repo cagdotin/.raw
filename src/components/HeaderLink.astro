@@ -13,9 +13,9 @@ const isActive = href === pathname || href === "/" + subpath?.[0];
 <a
   href={href}
   class:list={[
-    "text-foreground/60 hover:text-foreground/80",
+    "flex items-center  text-foreground/60 hover:text-foreground/80 px-2",
     className,
-    { "text-foreground": isActive },
+    { "text-foreground/90": isActive },
   ]}
   {...props}
 >
