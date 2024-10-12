@@ -6,18 +6,22 @@ import { SITE_TITLE } from "../consts";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 ---
 
-<Section as="header" class="sticky top-0 z-10 bg-background" transition:persist>
-  <Container>
-    <div class="flex justify-between">
+<Section
+  as="header"
+  class="sticky top-0 z-10 bg-background font-mono"
+  transition:persist
+>
+  <Container class="py-1">
+    <div class="flex justify-between items-center">
       <nav>
-        <h2><a href="/">{SITE_TITLE}</a></h2>
+        <h2 class="font-bold"><a href="/">{SITE_TITLE}</a></h2>
       </nav>
 
-      <nav>
-        <ul>
+      <nav class="flex items-center gap-4">
+        <ul class="flex gap-4 text-xs uppercase">
           <li><HeaderLink href="/">Home</HeaderLink></li>
-          <li><HeaderLink href="/blog">Blog</HeaderLink></li>
           <li><HeaderLink href="/about">About</HeaderLink></li>
+          <li><HeaderLink href="/blog">Blog</HeaderLink></li>
         </ul>
         <div>
           <ModeToggle client:load />

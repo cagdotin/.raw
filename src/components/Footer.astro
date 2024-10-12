@@ -5,10 +5,11 @@ import Section from "@/components/Section.astro";
 const today = new Date();
 ---
 
-<Section as="footer" class="border-t">
+<Section as="footer" class="border-b-0 grow">
   <Container>
-    <p>
-      &copy; {today.getFullYear()} 0xcgn. All rights reserved.
+    <p class="text-xs">
+      &copy;{today.getFullYear()} 0xcgn. All rights reserved.
     </p>
   </Container>
+  <Container class="border-t border-dashed" />
 </Section>

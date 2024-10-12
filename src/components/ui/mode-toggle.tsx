@@ -10,6 +10,12 @@ import {
 
 type theme_options = "theme-light" | "dark" | "system";
 
+const options = [
+  ["light", "theme-light"],
+  ["dark", "dark"],
+  ["system", "system"],
+] as [string, theme_options][];
+
 export function ModeToggle() {
   const [theme, setThemeState] = React.useState<theme_options>("theme-light");
 
@@ -30,22 +36,22 @@ export function ModeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button variant="ghost" size="icon">
           <Sun className="w-4 h-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="w-4 h-4 absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setThemeState("theme-light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setThemeState("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setThemeState("system")}>
-          System
-        </DropdownMenuItem>
+      <DropdownMenuContent className="font-mono text-xs lowercase" align="end">
+        {options.map(([key, value]) => (
+          <DropdownMenuItem
+            key={`theme-option-${key}`}
+            className="text-xs"
+            onClick={() => setThemeState(value)}
+          >
+            {key}
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
