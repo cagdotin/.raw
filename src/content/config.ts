@@ -35,7 +35,7 @@ const blog = defineCollection({
       .array(z.string())
       // remove the following if you do not want to limit the # of tags on a post.
       .max(3, "Too many tags (3+), less is more my friend. Tag wisely!")
-      .optional(),
+      .default([]),
     author: reference("authors"),
     draft: z.boolean().optional(),
     // An optional frontmatter property. Very common!

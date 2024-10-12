@@ -18,14 +18,14 @@ const posts: Post[] = await getCollection("blog", published);
 const posts_by_year = posts.reduce(
   (acc, curr) => {
     const year = curr.data.publishedAt.getFullYear();
-    const group = acc[year] || ([] as Post[]);
+    const group = acc[year] || [];
 
     return {
       ...acc,
       [year]: [...group, curr] as Post[],
     };
   },
-  {} as { string: Post[] }
+  {} as { [key: string]: Post[] }
 );
 
 const years = Object.keys(posts_by_year).sort((a, b) => Number(b) - Number(a));
@@ -35,7 +35,7 @@ const years = Object.keys(posts_by_year).sort((a, b) => Number(b) - Number(a));
   <Section>
     <Container>
       <div class="pb-2 mb-4 border-b">
-        <h1 class="text-3xl font-bold">BLOG</h1>
+        <h1 class="text-lg font-bold">BLOG</h1>
       </div>
 
       <div class="flex flex-col">
