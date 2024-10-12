@@ -3,6 +3,7 @@ import HeaderLink from "@/components/HeaderLink.astro";
 import Section from "@/components/Section.astro";
 import Container from "@/components/Container.astro";
 import { SITE_TITLE } from "../consts";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 ---
 
 <Section as="header" class="sticky top-0 z-10 bg-background" transition:persist>
@@ -18,6 +19,9 @@ import { SITE_TITLE } from "../consts";
           <li><HeaderLink href="/blog">Blog</HeaderLink></li>
           <li><HeaderLink href="/about">About</HeaderLink></li>
         </ul>
+        <div>
+          <ModeToggle client:load />
+        </div>
       </nav>
     </div>
   </Container>
