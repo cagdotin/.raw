@@ -1,18 +1,19 @@
 ---
+import { Badge } from "@/components/ui/badge";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { MoveRight } from "lucide-react";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import Container from "@/components/Container.astro";
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/components/Section.astro";
-import Container from "@/components/Container.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
-import { getCollection, type CollectionEntry } from "astro:content";
-import FormattedDate from "@/components/FormattedDate.astro";
-import { ArrowRight, ChevronRight, MoveRight } from "lucide-react";
 
 type Post = CollectionEntry<"blog">;
 
-const posts = (await getCollection(
-  "blog",
-  ({ data }: Post) => !data.draft
-)) as Post[];
+const published = ({ data }: Post) => !data.draft;
+const posts: Post[] = await getCollection("blog", published);
+
+// You can list all the tags like this.
+// const tags = [...new Set(posts.map((post) => post.data.tags).flat())];
 
 const posts_by_year = posts.reduce(
   (acc, curr) => {
@@ -33,25 +34,38 @@ const years = Object.keys(posts_by_year).sort((a, b) => Number(b) - Number(a));
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <Section>
     <Container>
-      <div class="border-b pb-2 mb-4">
-        <h1 class="font-bold text-3xl">BLOG</h1>
+      <div class="pb-2 mb-4 border-b">
+        <h1 class="text-3xl font-bold">BLOG</h1>
       </div>
 
       <div class="flex flex-col">
         {
           years.map((year) => (
-            <div class="flex flex-col sm:flex-row border-t py-2 mt-4">
-              <div class="text-bold w-full sm:w-2/12 py-1 mb-8 font-mono">
+            <div class="flex flex-col py-2 mt-4 border-t sm:flex-row">
+              <div class="w-full py-1 mb-8 font-mono text-bold sm:w-2/12">
                 [{year}]
               </div>
-              <div class="w-full sm:w-10/12 flex flex-col">
+              <div class="flex flex-col w-full sm:w-10/12">
                 {posts_by_year[year].map((post: Post) => (
                   <a
-                    class="border-t first:border-t-0 flex justify-between py-1 items-center"
+                    class="flex items-center justify-between py-1 border-t first:border-t-0"
                     href={`/blog/${post.slug}`}
                   >
-                    {post.data.title}
-                    <MoveRight className="w-4 h-4" />
+                    <span class="sm:w-7/12">{post.data.title}</span>
+
+                    <span class="hidden font-mono text-xs sm:w-4/12 sm:flex sm:space-x-1">
+                      {post.data.tags.map((tag: string) => (
+                        <Badge
+                          variant="secondary"
+                          className="rounded-sm px-1 font-normal"
+                        >
+                          #{tag}
+                        </Badge>
+                      ))}
+                    </span>
+                    <span class="w-1/12">
+                      <MoveRight className="ml-auto w-4 h-4" />
+                    </span>
                   </a>
                 ))}
               </div>
