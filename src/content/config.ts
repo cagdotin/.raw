@@ -1,5 +1,20 @@
 import { defineCollection, z } from "astro:content";
 
+const author = defineCollection({
+  type: "content",
+  schema: z.object({
+    name: z.string(),
+    bio: z.string(),
+    avatar: z.string().url(),
+    website: z.string().url().optional(),
+    email: z.string().url().optional(),
+    socials: z.object({
+      twitter: z.string().url().optional(),
+      github: z.string().url().optional(),
+    }),
+  }),
+});
+
 const blog = defineCollection({
   type: "content",
   schema: z.object({
@@ -27,4 +42,4 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+export const collections = { author, blog };
