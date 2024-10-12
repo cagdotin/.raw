@@ -3,32 +3,62 @@ import Layout from "@/layouts/Layout.astro";
 import Section from "@/components/Section.astro";
 import Container from "@/components/Container.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import FormattedDate from "@/components/FormattedDate.astro";
+import { ArrowRight, ChevronRight, MoveRight } from "lucide-react";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+type Post = CollectionEntry<"blog">;
+
+const posts = (await getCollection(
+  "blog",
+  ({ data }: Post) => !data.draft
+)) as Post[];
+
+const posts_by_year = posts.reduce(
+  (acc, curr) => {
+    const year = curr.data.publishedAt.getFullYear();
+    const group = acc[year] || ([] as Post[]);
+
+    return {
+      ...acc,
+      [year]: [...group, curr] as Post[],
+    };
+  },
+  {} as { string: Post[] }
 );
+
+const years = Object.keys(posts_by_year).sort((a, b) => Number(b) - Number(a));
 ---
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <Section>
     <Container>
-      <ul class="flex flex-wrap">
+      <div class="border-b pb-2 mb-4">
+        <h1 class="font-bold text-3xl">BLOG</h1>
+      </div>
+
+      <div class="flex flex-col">
         {
-          posts.map((post) => (
-            <li class="w-1/2 p-2">
-              <a href={`/blog/${post.slug}/`}>
-                <img src={post.data.heroImage} alt="" />
-                <h4 class="title">{post.data.title}</h4>
-                <p class="date">
-                  <FormattedDate date={post.data.pubDate} />
-                </p>
-              </a>
-            </li>
+          years.map((year) => (
+            <div class="flex flex-col sm:flex-row border-t py-2 mt-4">
+              <div class="text-bold w-full sm:w-2/12 py-1 mb-8 font-mono">
+                [{year}]
+              </div>
+              <div class="w-full sm:w-10/12 flex flex-col">
+                {posts_by_year[year].map((post: Post) => (
+                  <a
+                    class="border-t first:border-t-0 flex justify-between py-1 items-center"
+                    href={`/blog/${post.slug}`}
+                  >
+                    {post.data.title}
+                    <MoveRight className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
           ))
         }
-      </ul>
+      </div>
     </Container>
   </Section>
 </Layout>
