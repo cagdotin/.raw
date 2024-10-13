@@ -4,13 +4,19 @@ import Container from "@/components/Container.astro";
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/components/Section.astro";
 import PostsByYear from "@/components/post/PostsByYear.astro";
+
+const breadcrumbs = [{ label: "Blog" }];
 ---
 
-<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<Layout
+  title={SITE_TITLE}
+  description={SITE_DESCRIPTION}
+  breadcrumbs={breadcrumbs}
+>
   <Section>
     <Container>
       <div class="pb-2 mb-4 border-b">
-        <h1 class="text-lg font-bold">BLOG</h1>
+        <h1 class="text-lg font-bold">BLOG POSTS</h1>
       </div>
 
       <PostsByYear />

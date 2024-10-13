@@ -4,6 +4,13 @@ import Section from "@/components/Section.astro";
 import Container from "@/components/Container.astro";
 import { SITE_TITLE } from "../consts";
 import { ModeToggle } from "@/components/ui/mode-toggle";
+import Breadcrumbs, { type BreadcrumbItem } from "./Breadcrumbs.astro";
+
+interface Props {
+  breadcrumbs?: BreadcrumbItem[];
+}
+
+const { breadcrumbs } = Astro.props;
 ---
 
 <Section
@@ -23,12 +30,19 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
       >
         <HeaderLink href="/">Home</HeaderLink>
         <HeaderLink href="/about">About</HeaderLink>
-        <HeaderLink href="/blog/components">Components</HeaderLink>
         <HeaderLink href="/blog">Blog</HeaderLink>
+        <HeaderLink href="/blog/components">Components</HeaderLink>
         <div class="border-l">
           <ModeToggle client:load />
         </div>
       </nav>
     </div>
   </Container>
+  {
+    breadcrumbs && (
+      <Container class="border-t py-2">
+        <Breadcrumbs items={breadcrumbs} />
+      </Container>
+    )
+  }
 </Section>
