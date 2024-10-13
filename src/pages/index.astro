@@ -11,9 +11,9 @@ import Section from "@/components/Section.astro";
   <Section as="header">
     <Container class="py-8">
       <h1 class="font-bold text-xl pb-4">Greetings, fellow Astronauts!</h1>
-      <p class="mb-4">
-        <b class="text-lg">.raw</b> is an opinionated static blogging template built
-        with
+      <p class="mb-4 text-sm text-muted-foreground">
+        <b class="text-foreground">.raw</b> is an opinionated static blogging template
+        built with
         <Link href="https://astro.build/" underline external> Astro </Link>,
         <Link href="https://tailwindcss.com/" underline external>
           Tailwind
@@ -25,7 +25,7 @@ import Section from "@/components/Section.astro";
         starting point for anyone looking to build a personal website, blog, or
         portfolio with Astro.
       </p>
-      <p>
+      <p class="text-sm text-muted-foreground">
         To use this template, check out the
 
         <Link href="https://github.com/0xcgn/.raw" underline external>
@@ -38,14 +38,14 @@ import Section from "@/components/Section.astro";
   </Section>
   <Section>
     <Container>
-      <div class="py-4">
+      <div class="pb-4">
         <h3 class="font-lg font-bold pb-4">Latest Posts</h3>
 
         <RecentPosts count={3} />
       </div>
 
       <div>
-        <p>
+        <p class="text-sm text-muted-foreground">
           Looking for a blog template with a bit more personality? Check out the
           small guide on How to customize the template.
         </p>
