@@ -1,64 +1,55 @@
 ---
-import Section from "@/components/Section.astro";
-import Container from "@/components/Container.astro";
-import Prose from "@/components/Prose.astro";
-import Layout from "@/layouts/Layout.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import Container from "@/components/Container.astro";
+import Layout from "@/layouts/Layout.astro";
+import Link from "@/components/Link.astro";
+import RecentPosts from "@/components/post/RecentPosts.astro";
+import Section from "@/components/Section.astro";
 ---
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <Section as="header">
+    <Container class="py-8">
+      <h1 class="font-bold text-xl pb-4">Greetings, fellow Astronauts!</h1>
+      <p class="mb-4">
+        <b class="text-lg">.raw</b> is an opinionated static blogging template built
+        with
+        <Link href="https://astro.build/" underline external> Astro </Link>,
+        <Link href="https://tailwindcss.com/" underline external>
+          Tailwind
+        </Link>
+        , and
+        <Link href="https://ui.shadcn.com/" underline external
+          >shadcn/ui
+        </Link>. This template serves as a lightweight, minimally-styled
+        starting point for anyone looking to build a personal website, blog, or
+        portfolio with Astro.
+      </p>
+      <p>
+        To use this template, check out the
+
+        <Link href="https://github.com/0xcgn/.raw" underline external>
+          GitHub
+        </Link>
+
+        repository.
+      </p>
+    </Container>
+  </Section>
   <Section>
     <Container>
-      <Prose>
-        <h1>🧑‍🚀 Hello, Astronaut!</h1>
+      <div class="py-4">
+        <h3 class="font-lg font-bold pb-4">Latest Posts</h3>
+
+        <RecentPosts count={3} />
+      </div>
+
+      <div>
         <p>
-          Welcome to the official <a href="https://astro.build/">Astro</a> blog starter
-          template. This template serves as a lightweight, minimally-styled starting
-          point for anyone looking to build a personal website, blog, or portfolio
-          with Astro.
+          Looking for a blog template with a bit more personality? Check out the
+          small guide on How to customize the template.
         </p>
-        <p>
-          This template comes with a few integrations already configured in your
-          <code>astro.config.mjs</code> file. You can customize your setup with
-          <a href="https://astro.build/integrations">Astro Integrations</a> to add
-          tools like Tailwind, React, or Vue to your project.
-        </p>
-        <p>Here are a few ideas on how to get started with the template:</p>
-        <ul>
-          <li>Edit this page in <code>src/pages/index.astro</code></li>
-          <li>
-            Edit the site header items in <code
-              >src/components/Header.astro</code
-            >
-          </li>
-          <li>
-            Add your name to the footer in <code
-              >src/components/Footer.astro</code
-            >
-          </li>
-          <li>
-            Check out the included blog posts in <code>src/content/blog/</code>
-          </li>
-          <li>
-            Customize the blog post page layout in <code
-              >src/layouts/BlogPost.astro</code
-            >
-          </li>
-        </ul>
-        <p>
-          Have fun! If you get stuck, remember to <a
-            href="https://docs.astro.build/"
-            >read the docs
-          </a> or <a href="https://astro.build/chat">join us on Discord</a> to ask
-          questions.
-        </p>
-        <p>
-          Looking for a blog template with a bit more personality? Check out <a
-            href="https://github.com/Charca/astro-blog-template"
-            >astro-blog-template
-          </a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-        </p>
-      </Prose>
+      </div>
     </Container>
   </Section>
 </Layout>
