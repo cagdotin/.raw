@@ -1,0 +1,21 @@
+---
+import Container from "@/components/Container.astro";
+import Layout from "@/layouts/Layout.astro";
+import PostHeader from "@/components/post/PostHeader.astro";
+import Section from "@/components/Section.astro";
+import type { CollectionEntry } from "astro:content";
+
+type Props = CollectionEntry<"blog">;
+
+const { title, description } = Astro.props.data;
+---
+
+<Layout title={title} description={description}>
+  <PostHeader {...Astro.props} />
+
+  <Section as="article">
+    <Container>
+      <slot />
+    </Container>
+  </Section>
+</Layout>

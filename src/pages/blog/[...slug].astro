@@ -1,6 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import BlogPost from "@/layouts/BlogPost.astro";
+import BlogPostLayout from "@/layouts/BlogPostLayout.astro";
 import Prose from "@/components/Prose.astro";
 
 type Post = CollectionEntry<"blog">;
@@ -19,8 +19,8 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BlogPost {...post.data}>
+<BlogPostLayout {...post}>
   <Prose>
     <Content />
   </Prose>
-</BlogPost>
+</BlogPostLayout>
