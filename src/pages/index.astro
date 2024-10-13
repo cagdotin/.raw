@@ -11,38 +11,39 @@ const { title, description } = site_config;
 
 <Layout title={title} description={description}>
   <Section as="header">
-    <Container class="py-8">
-      <h1 class="font-bold text-xl pb-4">Greetings, fellow Astronauts!</h1>
-      <p class="mb-4 text-sm text-muted-foreground">
-        <b class="text-foreground">.raw</b> is an opinionated static blogging template
-        built with
-        <Link href="https://astro.build/" underline external> Astro </Link>,
-        <Link href="https://tailwindcss.com/" underline external>
-          Tailwind
-        </Link>
-        , and
-        <Link href="https://ui.shadcn.com/" underline external
-          >shadcn/ui
-        </Link>. This template serves as a lightweight, minimally-styled
-        starting point for anyone looking to build a personal website, blog, or
-        portfolio with Astro.
-      </p>
-      <p class="text-sm text-muted-foreground">
-        To use this template, check out the
+    <Container class="flex flex-col sm:flex-row p-0">
+      <div class="py-8 w-full sm:w-7/12 px-4">
+        <p class="mb-4 text-sm text-muted-foreground">
+          <b class="text-foreground">.raw</b> is an opinionated static blogging template
+          built with
+          <Link href="https://astro.build/" underline external> Astro </Link>,
+          <Link href="https://tailwindcss.com/" underline external>
+            Tailwind
+          </Link>
+          , and
+          <Link href="https://ui.shadcn.com/" underline external
+            >shadcn/ui
+          </Link>. This template serves as a lightweight, minimally-styled
+          starting point for anyone looking to build a personal website, blog,
+          or portfolio with Astro.
+        </p>
+        <p class="text-sm text-muted-foreground">
+          To use this template, check out the
 
-        <Link href="https://github.com/0xcgn/.raw" underline external>
-          GitHub
-        </Link>
+          <Link href="https://github.com/0xcgn/.raw" underline external>
+            GitHub
+          </Link>
 
-        repository.
-      </p>
+          repository.
+        </p>
+      </div>
+      <div class="border-t sm:border-t-none sm:border-l aspect-video"></div>
     </Container>
   </Section>
   <Section>
     <Container>
       <div class="pb-4">
-        <h3 class="font-lg font-bold pb-4">Latest Posts</h3>
-
+        <h3 class="font-lg font-bold pb-4">Getting Started</h3>
         <RecentPosts count={3} />
       </div>
 
