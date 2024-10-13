@@ -14,7 +14,7 @@ const { title, tags } = data;
   <Link class="flex items-center justify-between py-1" href={`/blog/${slug}`}>
     <div class="sm:w-7/12">{title}</div>
 
-    <div class="hidden text-xs sm:w-4/12 sm:flex sm:space-x-1">
+    <div class="hidden text-xs sm:w-4/12 sm:flex flex-wrap">
       {tags.map((tag: string) => <Tag tag={tag} />)}
     </div>
 
