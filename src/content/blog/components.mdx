@@ -1,0 +1,76 @@
+---
+title: "Components & Building Blocks"
+description: "Beautifully designed components that you can copy and paste into your apps."
+publishedAt: "Oct 13 2024"
+image: 
+  src: "/images/posts/blog-placeholder-5.jpg"
+  alt: "Blog placeholder image #5"
+tags: ["documentation"]
+author: "cagin"
+---
+
+## UI Components
+
+UI components are basically [shadcn/ui](https://ui.shadcn.com/) with a little bit of a customization here and there. For more information about specific UI components visit the shadcn/ui documentation. To use any of the components under `src/components/ui/` you just import and use. Feel free to customize them to fit your needs
+
+here is an example usage for button component.
+
+```javascript
+---
+import {Button} from "@/components/ui/button";
+---
+
+<Button variant="outline" size="sm">I am a button</Button>
+<Button size="sm">I am also a button</Button>
+<Button variant="destructive" size="sm">I am a warning you</Button>
+```
+
+import {Button} from "@/components/ui/button";
+
+<Button variant="outline" size="sm">I am a button</Button>
+<Button size="sm">I am also a button</Button>
+<Button variant="destructive" size="sm">I am warning you</Button>
+
+
+## Posts
+
+### Recent posts
+
+You can add recent posts to your page by adding the following code
+
+```javascript
+---
+import RecentPosts from "@/components/post/RecentPosts.astro";
+---
+
+<RecentPosts count={2} />
+
+```
+
+result:
+
+import RecentPosts from "@/components/post/RecentPosts.astro"
+
+<RecentPosts count={2} />
+
+
+### Posts by Year
+
+You can add recent posts to your page by adding the following code
+
+```javascript
+---
+import PostsByYear from "@/components/post/PostsByYear.astro"
+---
+
+<PostsByYear  />
+
+```
+
+result:
+
+import PostsByYear from "@/components/post/PostsByYear.astro"
+
+<div className="p-4 list-none">
+    <PostsByYear  />
+</div>

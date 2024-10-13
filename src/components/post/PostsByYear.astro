@@ -28,7 +28,7 @@ const years = Object.keys(posts_by_year).sort((a, b) => Number(b) - Number(a));
         <div class="w-full py-1 mb-8 font-mono text-bold sm:w-2/12">
           [{year}]
         </div>
-        <ul class="flex flex-col w-full sm:w-10/12">
+        <ul class="flex flex-col list-none w-full sm:w-10/12">
           {posts_by_year[year].map((post: Post) => (
             <PostsListItem {...post} />
           ))}
