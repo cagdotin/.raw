@@ -1,0 +1,26 @@
+---
+import { site_config } from "@/consts";
+import { Button } from "@/components/ui/button";
+import { SiX, SiGithub, SiRss } from "@icons-pack/react-simple-icons";
+import Link from "@/components/Link.astro";
+
+const { socials } = site_config;
+---
+
+<div class="flex">
+  <Link href={socials.rss} external>
+    <Button size="icon" variant="ghost" className="border-x">
+      <SiRss className="w-3 h-3" />
+    </Button>
+  </Link>
+  <Link href={socials.twitter} external>
+    <Button size="icon" variant="ghost" className="border-r">
+      <SiX className="w-3 h-3" />
+    </Button>
+  </Link>
+  <Link href={socials.github} external>
+    <Button size="icon" variant="ghost">
+      <SiGithub className="w-4 h-4" />
+    </Button>
+  </Link>
+</div>

@@ -2,9 +2,10 @@
 import HeaderLink from "@/components/HeaderLink.astro";
 import Section from "@/components/Section.astro";
 import Container from "@/components/Container.astro";
-import { SITE_TITLE } from "../consts";
+import { site_config } from "../consts";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import Breadcrumbs, { type BreadcrumbItem } from "./Breadcrumbs.astro";
+import Socials from "./Socials.astro";
 
 interface Props {
   breadcrumbs?: BreadcrumbItem[];
@@ -22,7 +23,7 @@ const { breadcrumbs } = Astro.props;
   <Container class="py-0 pr-0 border-t">
     <div class="flex justify-between items-center">
       <nav>
-        <h2 class="font-bold"><a href="/">{SITE_TITLE}</a></h2>
+        <h2 class="font-bold"><a href="/">{site_config.title}</a></h2>
       </nav>
 
       <nav
@@ -38,11 +39,12 @@ const { breadcrumbs } = Astro.props;
       </nav>
     </div>
   </Container>
-  {
-    breadcrumbs && (
-      <Container class="border-t py-2">
-        <Breadcrumbs items={breadcrumbs} />
-      </Container>
-    )
-  }
+  <Container class="border-t py-0 pr-0 flex justify-between items-center">
+    <div>
+      {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
+    </div>
+    <div>
+      <Socials />
+    </div>
+  </Container>
 </Section>
