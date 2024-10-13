@@ -1,13 +1,15 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { site_config } from "../consts";
 import Container from "@/components/Container.astro";
 import Layout from "@/layouts/Layout.astro";
 import Link from "@/components/Link.astro";
 import RecentPosts from "@/components/post/RecentPosts.astro";
 import Section from "@/components/Section.astro";
+
+const { title, description } = site_config;
 ---
 
-<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<Layout title={title} description={description}>
   <Section as="header">
     <Container class="py-8">
       <h1 class="font-bold text-xl pb-4">Greetings, fellow Astronauts!</h1>

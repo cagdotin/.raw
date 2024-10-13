@@ -1,18 +1,15 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { site_config } from "../../consts";
 import Container from "@/components/Container.astro";
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/components/Section.astro";
 import PostsByYear from "@/components/post/PostsByYear.astro";
 
 const breadcrumbs = [{ label: "Blog" }];
+const { title, description } = site_config;
 ---
 
-<Layout
-  title={SITE_TITLE}
-  description={SITE_DESCRIPTION}
-  breadcrumbs={breadcrumbs}
->
+<Layout title={title} description={description} breadcrumbs={breadcrumbs}>
   <Section>
     <Container>
       <div class="pb-2 mb-4 border-b">
