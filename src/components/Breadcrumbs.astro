@@ -23,7 +23,7 @@ const { items, class: className } = Astro.props;
 ---
 
 <Breadcrumb className={cn(["font-mono lowercase", className])}>
-  <BreadcrumbList>
+  <BreadcrumbList className="flex-nowrap overflow-hidden">
     <BreadcrumbItem>
       <BreadcrumbLink href="/"> home </BreadcrumbLink>
     </BreadcrumbItem>
@@ -31,7 +31,7 @@ const { items, class: className } = Astro.props;
       items.map((item, index) => (
         <>
           <BreadcrumbSeparator />
-          <BreadcrumbItem>
+          <BreadcrumbItem className="shrink-0">
             {index === items.length - 1 ? (
               <BreadcrumbPage>
                 <span class="flex items-center gap-x-2">{item.label}</span>

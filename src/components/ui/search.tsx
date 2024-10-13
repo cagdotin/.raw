@@ -8,7 +8,7 @@ export const Search = () => {
       variant="ghost"
       size="sm"
       className={cn(
-        "relative border-x w-full justify-start text-xs font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 grow"
+        "relative px-4 border-x w-full justify-start text-xs font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 grow"
       )}
       //   onClick={() => setOpen(true)}
       //   {...props}
