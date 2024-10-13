@@ -1,11 +1,12 @@
 ---
+import { ModeToggle } from "@/components/ui/mode-toggle";
+import { Search } from "@/components/ui/search";
+import { site_config } from "../consts";
+import Breadcrumbs, { type BreadcrumbItem } from "./Breadcrumbs.astro";
+import Container from "@/components/Container.astro";
 import HeaderLink from "@/components/HeaderLink.astro";
 import Section from "@/components/Section.astro";
-import Container from "@/components/Container.astro";
-import { site_config } from "../consts";
-import { ModeToggle } from "@/components/ui/mode-toggle";
-import Breadcrumbs, { type BreadcrumbItem } from "./Breadcrumbs.astro";
-import Socials from "./Socials.astro";
+import Socials from "@/components/Socials.astro";
 
 interface Props {
   breadcrumbs?: BreadcrumbItem[];
@@ -39,11 +40,21 @@ const { breadcrumbs } = Astro.props;
       </nav>
     </div>
   </Container>
-  <Container class="border-t py-0 pr-0 flex justify-between items-center">
-    <div>
-      {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
+  <Container
+    class="border-t p-0 flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center"
+  >
+    <div class="sm:w-7/12">
+      {
+        breadcrumbs && (
+          <Breadcrumbs
+            class="border-y py-2 px-4 sm:border-none"
+            items={breadcrumbs}
+          />
+        )
+      }
     </div>
-    <div>
+    <div class="sm:w-5/12 flex justify-end">
+      <Search />
       <Socials />
     </div>
   </Container>
