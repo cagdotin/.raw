@@ -1,34 +1,9 @@
 ---
-import { Badge } from "@/components/ui/badge";
-import { getCollection, type CollectionEntry } from "astro:content";
-import { MoveRight } from "lucide-react";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import Container from "@/components/Container.astro";
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/components/Section.astro";
-
-type Post = CollectionEntry<"blog">;
-
-const published = ({ data }: Post) => !data.draft;
-const posts: Post[] = await getCollection("blog", published);
-
-// You can list all the tags like this.
-// const tags = [...new Set(posts.map((post) => post.data.tags).flat())];
-
-const posts_by_year = posts.reduce(
-  (acc, curr) => {
-    const year = curr.data.publishedAt.getFullYear();
-    const group = acc[year] || [];
-
-    return {
-      ...acc,
-      [year]: [...group, curr] as Post[],
-    };
-  },
-  {} as { [key: string]: Post[] }
-);
-
-const years = Object.keys(posts_by_year).sort((a, b) => Number(b) - Number(a));
+import PostsByYear from "@/components/post/PostsByYear.astro";
 ---
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -38,41 +13,7 @@ const years = Object.keys(posts_by_year).sort((a, b) => Number(b) - Number(a));
         <h1 class="text-lg font-bold">BLOG</h1>
       </div>
 
-      <div class="flex flex-col">
-        {
-          years.map((year) => (
-            <div class="flex flex-col py-2 mt-4 border-t sm:flex-row">
-              <div class="w-full py-1 mb-8 font-mono text-bold sm:w-2/12">
-                [{year}]
-              </div>
-              <div class="flex flex-col w-full sm:w-10/12">
-                {posts_by_year[year].map((post: Post) => (
-                  <a
-                    class="flex items-center justify-between py-1 border-t first:border-t-0"
-                    href={`/blog/${post.slug}`}
-                  >
-                    <span class="sm:w-7/12">{post.data.title}</span>
-
-                    <span class="hidden  text-xs sm:w-4/12 sm:flex sm:space-x-1">
-                      {post.data.tags.map((tag: string) => (
-                        <Badge
-                          variant="secondary"
-                          className="rounded-sm px-1 font-normal text-xs"
-                        >
-                          #{tag}
-                        </Badge>
-                      ))}
-                    </span>
-                    <span class="w-1/12">
-                      <MoveRight className="ml-auto w-4 h-4" />
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          ))
-        }
-      </div>
+      <PostsByYear />
     </Container>
   </Section>
 </Layout>

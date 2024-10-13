@@ -1,0 +1,25 @@
+---
+import { MoveRight } from "lucide-react";
+import { Tag } from "@/components/ui/tag";
+import Link from "@/components/Link.astro";
+import type { Post } from "@/lib/post-utils";
+
+type Props = Post;
+
+const { slug, data } = Astro.props;
+const { title, tags } = data;
+---
+
+<li class="border-t first:border-t-0">
+  <Link class="flex items-center justify-between py-1" href={`/blog/${slug}`}>
+    <div class="sm:w-7/12">{title}</div>
+
+    <div class="hidden text-xs sm:w-4/12 sm:flex sm:space-x-1">
+      {tags.map((tag: string) => <Tag tag={tag} />)}
+    </div>
+
+    <div class="w-1/12">
+      <MoveRight className="ml-auto w-4 h-4" />
+    </div>
+  </Link>
+</li>

@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import { published, type Post } from "@/lib/post-utils";
+import PostsListItem from "@/components/post/PostsListItem.astro";
+
+type Props = {
+  count: number;
+};
+
+const { count } = Astro.props;
+
+const posts: Post[] = await getCollection("blog", published);
+const recent_posts = posts
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .slice(0, count);
+---
+
+<ul class="flex flex-col py-4 border-y">
+  {recent_posts.map((post) => <PostsListItem {...post} />)}
+</ul>

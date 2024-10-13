@@ -1,7 +1,7 @@
 ---
-import { Badge } from "@/components/ui/badge";
 import { Image } from "astro:assets";
 import { Separator } from "@/components/ui/separator";
+import { Tag } from "../ui/tag";
 import Author from "@/components/Author.astro";
 import Container from "@/components/Container.astro";
 import Date from "@/components/Date.astro";
@@ -39,18 +39,11 @@ const { title, publishedAt, tags, image, author } = Astro.props.data;
       <Author id={author.id} />
       <!-- TODO: reading time estimate ? -->
     </div>
+
     <h1 class="text-4xl pt-2 pb-4">{title}</h1>
+
     <div class="flex gap-x-1">
-      {
-        tags?.map((t: string) => (
-          <Badge
-            className="rounded-none px-1 font-normal text-xs"
-            variant="outline"
-          >
-            #{t}
-          </Badge>
-        ))
-      }
+      {tags?.map((tag: string) => <Tag tag={tag} />)}
     </div>
   </Container>
 </Section>
