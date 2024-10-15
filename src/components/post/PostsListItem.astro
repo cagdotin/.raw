@@ -6,12 +6,12 @@ import type { Post } from "@/lib/post-utils";
 
 type Props = Post;
 
-const { slug, data } = Astro.props;
+const { id, data } = Astro.props;
 const { title, tags } = data;
 ---
 
 <li class="border-t first:border-t-0">
-  <Link class="flex items-center justify-between py-1" href={`/blog/${slug}`}>
+  <Link class="flex items-center justify-between py-1" href={`/blog/${id}`}>
     <div class="sm:w-7/12">{title}</div>
 
     <div class="hidden text-xs sm:w-4/12 sm:flex flex-wrap">

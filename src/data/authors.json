@@ -1,0 +1,14 @@
+[
+    {
+        "id": "cagin",
+        "name": "cagin",
+        "bio": "Full-stack Dev, Athlete, Indie Lurker",
+        "avatar": "/images/authors/cagin-avatar.png",
+        "website": "https://cag.in",
+        "email": "hi@cag.in",
+        "socials": {
+            "twitter": "https://twitter.com/0xcgn",
+            "github": "https://github.com/0xcgn"
+        }
+    }
+]

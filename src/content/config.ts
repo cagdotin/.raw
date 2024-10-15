@@ -1,4 +1,5 @@
 import { defineCollection, reference, z } from "astro:content";
+import { file, glob } from "astro/loaders";
 
 const site_title = z
   .string()
@@ -20,24 +21,23 @@ const local_avatar = z
   .refine((value) => value.startsWith("/images/authors/"));
 
 const authors = defineCollection({
-  type: "data",
-  schema: z
-    .object({
-      name: z.string(),
-      bio: z.string(),
-      avatar: local_avatar,
-      website: z.string().url(),
-      email: z.string().email().optional(),
-      socials: z.object({
-        twitter: z.string().url().optional(),
-        github: z.string().url().optional(),
-      }),
-    })
-    .strict(),
+  loader: file("src/data/authors.json"),
+  schema: z.object({
+    id: z.string(),
+    name: z.string(),
+    bio: z.string(),
+    avatar: local_avatar,
+    website: z.string().url(),
+    email: z.string().email().optional(),
+    socials: z.object({
+      twitter: z.string().url(),
+      github: z.string().url(),
+    }),
+  }),
 });
 
 const blog = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/blog" }),
   schema: z
     .object({
       title: site_title,
