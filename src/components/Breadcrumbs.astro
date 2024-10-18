@@ -15,11 +15,13 @@ export interface BreadcrumbItem {
 }
 
 interface Props {
-  items: BreadcrumbItem[];
+  items?: BreadcrumbItem[];
   class?: string;
 }
 
-const { items, class: className } = Astro.props;
+const { items = [], class: className } = Astro.props;
+
+if (items.length === 0) return "";
 ---
 
 <Breadcrumb className={cn(["font-mono lowercase", className])}>
