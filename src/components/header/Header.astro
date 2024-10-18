@@ -1,11 +1,13 @@
 ---
 import { ModeToggle } from "@/components/ui/mode-toggle";
-import { Search } from "@/components/ui/search";
+import { CommandSearch } from "@/components/command-search";
 import { site_config } from "@/consts";
 import Container from "@/components/Container.astro";
 import HeaderLink from "@/components/header/HeaderLink.astro";
 import Section from "@/components/Section.astro";
 import Socials from "@/components/Socials.astro";
+
+const { title, main_nav } = site_config;
 ---
 
 <Section
@@ -17,16 +19,18 @@ import Socials from "@/components/Socials.astro";
   <Container class="py-0 pr-0 border-t">
     <div class="flex justify-between items-center">
       <nav>
-        <h2 class="font-bold"><a href="/">{site_config.title}</a></h2>
+        <h2 class="font-bold"><a href="/">{title}</a></h2>
       </nav>
 
       <nav
         class="flex jusify-center h-full uppercase font-mono tracking-wide text-xs"
       >
-        <HeaderLink href="/">Home</HeaderLink>
-        <HeaderLink href="/about">About</HeaderLink>
-        <HeaderLink href="/blog">Blog</HeaderLink>
-        <HeaderLink href="/blog/components">Components</HeaderLink>
+        {
+          main_nav.map((link) => (
+            <HeaderLink href={link.href}>{link.title}</HeaderLink>
+          ))
+        }
+
         <div class="border-l">
           <ModeToggle client:load />
         </div>
@@ -40,7 +44,8 @@ import Socials from "@/components/Socials.astro";
       <slot name="subheader-left" />
     </div>
     <div class="sm:w-5/12 flex justify-end">
-      <Search />
+      <!-- <Search /> -->
+      <CommandSearch client:load />
       <Socials />
     </div>
   </Container>
