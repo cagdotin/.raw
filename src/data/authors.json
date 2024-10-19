@@ -1,14 +1,22 @@
 [
     {
         "id": "cagin",
-        "name": "cagin",
+        "name": "cagin cecen",
         "bio": "Full-stack Dev, Athlete, Indie Lurker",
+        "email": "hello@cagin.dev",
         "avatar": "/images/authors/cagin-avatar.png",
-        "website": "https://cag.in",
-        "email": "hi@cag.in",
-        "socials": {
-            "twitter": "https://twitter.com/0xcgn",
-            "github": "https://github.com/0xcgn"
+        "links": {
+            "website": "https://cagin.dev",
+            "dev.to": "https://dev.to/cagdotin",
+            "x": "https://x.com/cagdotin",
+            "github": "https://github.com/cagdotin",
+            "youtube": "https://www.youtube.com/@cagdotin",
+            "linkedin": "https://linkedin.com/@caginc",
+            "peerlist": "https://peerlist.com/@cagin",
+            "daily_dev": "https://app.daily.dev/cagin",
+            "roadmap_sh": "https://roadmap.sh/u/cagin",
+            "meet": "https://cal.com/cagin",
+            "onlyfans": "https://you-wish.page"
         }
     }
 ]

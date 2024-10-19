@@ -9,15 +9,21 @@ const site_description = z
   .string()
   .max(155, "Description should be <= 155 chars for optimal OG display.");
 
+/**
+ * remove the max 3 if you do not
+ * want to limit the # of tags on a post.
+ */
 const post_tags = z
   .array(z.string())
-  // remove the following if you do not want to limit the # of tags on a post.
   .max(3, "Too many tags (3+), less is more my friend. Tag wisely!")
   .default([]);
 
+/**
+ * replace .refine(...) with .url()
+ * if you are gonna using external source.
+ */
 const local_avatar = z
   .string()
-  // replace .refine(...) with .url() if you are gonna using external sources for avatar.
   .refine((value) => value.startsWith("/images/authors/"));
 
 const authors = defineCollection({
@@ -26,12 +32,19 @@ const authors = defineCollection({
     id: z.string(),
     name: z.string(),
     bio: z.string(),
+    email: z.string().email(),
     avatar: local_avatar,
-    website: z.string().url(),
-    email: z.string().email().optional(),
-    socials: z.object({
-      twitter: z.string().url(),
+    links: z.object({
+      website: z.string().url(),
+      x: z.string().url(),
       github: z.string().url(),
+      youtube: z.string().url().optional(),
+      linkedin: z.string().url().optional(),
+      peerlist: z.string().url().optional(),
+      daily_dev: z.string().url().optional(),
+      roadmap_sh: z.string().url().optional(),
+      meet: z.string().url().optional(),
+      onlyfans: z.string().url().optional(),
     }),
   }),
 });
@@ -47,7 +60,6 @@ const blog = defineCollection({
       draft: z.boolean().optional(),
       // An optional frontmatter property. Very common!
       footnote: z.string().optional(),
-      // ---
       publishedAt: z.coerce.date(),
       updatedAt: z.coerce.date().optional(),
       image: z
