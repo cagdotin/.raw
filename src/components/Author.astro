@@ -1,34 +1,17 @@
 ---
 import { getEntry } from "astro:content";
-import { Image } from "astro:assets";
 import Link from "@/components/Link.astro";
 
 type Props = {
   id: string;
-  displayAvatar?: boolean;
 };
 
-// TODO: link to authors page once built. href={`/authors/${author.slug}`}
-const { id, displayAvatar } = Astro.props;
+const { id } = Astro.props;
 
 const author = await getEntry("authors", id);
-const { name, website, avatar } = author!.data;
+const { name, links, avatar } = author!.data;
 ---
 
-<div class="flex items-center gap-x-1.5">
-  {
-    displayAvatar && (
-      <Image
-        src={avatar}
-        alt={name}
-        width={24}
-        height={24}
-        class="rounded-full"
-      />
-    )
-  }
-
-  <Link href={website} underline class="text-foreground">
-    <span>{name}</span>
-  </Link>
-</div>
+<Link href={`/authors/${id}`} class="text-foreground uppercase">
+  <span>{name}</span>
+</Link>

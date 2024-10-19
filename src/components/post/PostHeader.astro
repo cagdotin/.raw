@@ -1,7 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import { Separator } from "@/components/ui/separator";
-import { Tag } from "../ui/tag";
 import Author from "@/components/Author.astro";
 import Container from "@/components/Container.astro";
 import Date from "@/components/Date.astro";
@@ -33,17 +31,23 @@ const { title, publishedAt, tags, image, author } = Astro.props.data;
 <!-- Header -->
 <Section as="header">
   <Container>
-    <div class="text-xs font-mono flex gap-x-2 items-center">
-      <Date date={publishedAt} />
-      <Separator orientation="vertical" className="h-4" />
+    <h1 class="pt-2 pb-4 text-3xl sm:text-5xl">{title}</h1>
+    <div
+      class="uppercase text-[0.6em] sm:text-xs font-mono flex gap-x-2 items-center"
+    >
       <Author id={author.id} />
-      <!-- TODO: reading time estimate ? -->
-    </div>
-
-    <h1 class="text-4xl pt-2 pb-4">{title}</h1>
-
-    <div class="flex gap-x-1">
-      {tags?.map((tag: string) => <Tag tag={tag} />)}
+      <span>·</span>
+      <Date date={publishedAt} />
+      <span>·</span>
+      <div class="flex flex-wrap gap-x-1">
+        {
+          tags.map((tag: string, index) => (
+            <span>
+              {tags.length > 1 && index !== tags.length - 1 ? `${tag},` : tag}
+            </span>
+          ))
+        }
+      </div>
     </div>
   </Container>
 </Section>
