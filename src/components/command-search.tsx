@@ -1,6 +1,6 @@
 import * as React from "react";
 import { navigate } from "astro:transitions/client";
-import { LucideBookDashed, LucideExternalLink } from "lucide-react";
+import { LucideBookDashed, LucideExternalLink, LucideLink } from "lucide-react";
 import { SiGithub, SiX } from "@icons-pack/react-simple-icons";
 
 import { Button, type ButtonProps } from "@/components/ui/button";
@@ -22,31 +22,80 @@ const { socials, main_nav } = site_config;
 const use_template_url =
   "https://github.com/new?template_name=.raw&template_owner=cagdotin";
 
-const commands = [
+interface ICommand {
+  title: string;
+  onSelect: () => void;
+  icon?: React.ReactElement;
+  external?: boolean;
+  commandKey?: string;
+  className?: string;
+}
+
+interface ICommandGroup {
+  heading: string;
+  commands: ICommand[];
+  seperate?: boolean;
+}
+
+const commands: ICommandGroup[] = [
+  {
+    heading: "NAVIGATION",
+    seperate: false,
+    commands: [
+      ...main_nav.map((nav_item, index) => ({
+        title: nav_item.title,
+        onSelect: () => navigate(nav_item.href, { history: "push" }),
+        // icon: <ChevronRight className="w-3 h-3" />,
+        icon: <nav_item.Icon className="w-4 h-4" />,
+        commandKey: `${index + 1}`,
+        className: "uppercase text-xs",
+      })),
+    ],
+  },
+  {
+    heading: "Quick Actions",
+    commands: [
+      {
+        title: "Copy URL",
+        onSelect: () => {
+          navigator.clipboard.writeText(window.location.href);
+        },
+        icon: <LucideLink className="w-4 h-4" />,
+        commandKey: "y",
+      },
+    ],
+  },
   {
     heading: "Show some love",
     commands: [
       {
         title: "Use this template on your project",
         onSelect: () => window.open(use_template_url, "_blank")?.focus(),
-        Icon: <LucideBookDashed className="w-4 h-4 mr-2" />,
+        icon: <LucideBookDashed className="w-4 h-4" />,
         external: true,
       },
       {
         title: "Checkout Github Repository",
         onSelect: () => window.open(socials.github, "_blank")?.focus(),
-        Icon: <SiGithub className="w-4 h-4 mr-2" />,
+        icon: <SiGithub className="w-4 h-4" />,
         external: true,
       },
       {
         title: "Follow me",
         onSelect: () => window.open(socials.twitter, "_blank")?.focus(),
-        Icon: <SiX className="w-3 h-3 mr-2" />,
+        icon: <SiX className="w-3 h-3" />,
         external: true,
       },
     ],
   },
 ];
+
+const commandsWithShortcut = commands.reduce(
+  (acc, curr) => [...acc, ...curr.commands.filter((c) => c.commandKey)],
+  [] as ICommand[]
+);
+
+const shortcutKeys = commandsWithShortcut.map((c) => c.commandKey);
 
 const TriggerButton = (props: ButtonProps) => (
   <Button
@@ -64,6 +113,33 @@ const TriggerButton = (props: ButtonProps) => (
   </Button>
 );
 
+interface ItemProps {
+  command: ICommand;
+  onSelect: () => void;
+  className?: string;
+}
+
+const Item = ({ command, onSelect, className }: ItemProps) => {
+  return (
+    <CommandItem
+      value={command.title}
+      onSelect={onSelect}
+      className={cn([command.className, className])}
+    >
+      <div className="flex items-center grow">
+        {command.icon && <div className="w-8">{command.icon}</div>}
+        <span>{command.title}</span>
+      </div>
+      {command.external && <LucideExternalLink className="w-4 h-4" />}
+      {command.commandKey && (
+        <CommandShortcut className="uppercase hidden sm:inline-block">
+          ⌘{command.commandKey}
+        </CommandShortcut>
+      )}
+    </CommandItem>
+  );
+};
+
 export function CommandSearch() {
   const [open, setOpen] = React.useState(false);
 
@@ -72,6 +148,19 @@ export function CommandSearch() {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen((open) => !open);
+        return;
+      }
+
+      if ((e.metaKey || e.ctrlKey) && shortcutKeys.includes(e.key)) {
+        e.preventDefault();
+        const command = commandsWithShortcut.find(
+          (c) => c.commandKey == e.key
+        )!;
+        console.log(commandsWithShortcut);
+        console.log(command);
+        console.log(e.key);
+        runCommand(command.onSelect);
+        return;
       }
     };
 
@@ -98,61 +187,20 @@ export function CommandSearch() {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
 
-          {commands.map((group) => (
-            <CommandGroup heading={group.heading} key={group.heading}>
-              {group.commands.map((command, index) => (
-                <CommandItem
-                  key={`group-${group.heading}-item-${index}`}
-                  value={command.title}
-                  onSelect={() => runCommand(command.onSelect)}
-                  className="justify-between"
-                >
-                  <div className="flex">
-                    {command.Icon}
-                    <span>{command.title}</span>
-                  </div>
-                  {command.external && (
-                    <LucideExternalLink className="w-2 h-2" />
-                  )}
-                </CommandItem>
-              ))}
-            </CommandGroup>
+          {commands.map((group, index) => (
+            <>
+              {group.seperate && <CommandSeparator />}
+              <CommandGroup heading={group.heading} key={group.heading}>
+                {group.commands.map((command, index) => (
+                  <Item
+                    key={`group-${group.heading}-item-${index}`}
+                    command={command}
+                    onSelect={() => runCommand(command.onSelect)}
+                  />
+                ))}
+              </CommandGroup>
+            </>
           ))}
-
-          <CommandSeparator />
-          <CommandGroup heading="Quick Links">
-            {main_nav.map((item) => (
-              <CommandItem
-                key={item.href}
-                value={item.title}
-                onSelect={() =>
-                  runCommand(() => navigate(item.href, { history: "push" }))
-                }
-                className="uppercase text-xs"
-              >
-                {item.title}
-              </CommandItem>
-            ))}
-          </CommandGroup>
-
-          {/* <CommandSeparator />
-          <CommandGroup heading="Settings">
-            <CommandItem>
-              <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
-              <CommandShortcut>⌘P</CommandShortcut>
-            </CommandItem>
-            <CommandItem>
-              <CreditCard className="mr-2 h-4 w-4" />
-              <span>Billing</span>
-              <CommandShortcut>⌘B</CommandShortcut>
-            </CommandItem>
-            <CommandItem>
-              <Settings className="mr-2 h-4 w-4" />
-              <span>Settings</span>
-              <CommandShortcut>⌘S</CommandShortcut>
-            </CommandItem>
-          </CommandGroup> */}
         </CommandList>
       </CommandDialog>
     </>
