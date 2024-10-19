@@ -12,8 +12,8 @@ const { title, description } = site_config;
 
 <Layout title={title} description={description}>
   <Section as="header">
-    <Container class="flex flex-col sm:flex-row p-0">
-      <div class="py-8 w-full sm:w-7/12 px-4">
+    <Container class="flex flex-col p-0 sm:flex-row">
+      <div class="w-full px-4 py-8 sm:w-7/12">
         <p class="mb-4 text-sm text-muted-foreground">
           <b class="text-foreground">.raw</b> is an opinionated static blogging template
           built with
@@ -44,7 +44,7 @@ const { title, description } = site_config;
   <Section>
     <Container>
       <div class="pb-4">
-        <h3 class="font-lg font-bold pb-4">Getting Started</h3>
+        <h3 class="pb-4 font-bold font-lg">Getting Started</h3>
         <RecentPosts count={3} />
       </div>
 
@@ -72,7 +72,7 @@ const { title, description } = site_config;
             "raw is food",
             "·",
           ].map((slogan) => (
-            <div class="uppercase text-xs font-bold">{slogan}</div>
+            <div class="text-xs font-bold uppercase">{slogan}</div>
           ))
         }
       </Marquee>

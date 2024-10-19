@@ -10,12 +10,26 @@ const { id, data } = Astro.props;
 const { title, tags } = data;
 ---
 
-<li class="border-t first:border-t-0">
-  <Link class="flex items-center justify-between py-1" href={`/blog/${id}`}>
-    <div class="sm:w-7/12">{title}</div>
+<li class="border-b last:border-b-0">
+  <Link
+    class="flex items-center justify-between py-1 pr-1 text-sm transition ease-in-out text-muted-foreground hover:text-foreground hover:translate-x-1"
+    href={`/blog/${id}`}
+  >
+    <div class="font-semibold sm:w-7/12">
+      {title}
+    </div>
 
-    <div class="hidden text-xs sm:w-4/12 sm:flex flex-wrap">
-      {tags.map((tag: string) => <Tag tag={tag} />)}
+    <div
+      class="flex-wrap hidden gap-1 text-sm font-light lowercase sm:w-4/12 sm:flex"
+    >
+      <!-- {tags.map((tag: string) => <Tag tag={tag} />)} -->
+      {
+        tags.map((tag: string, index) => (
+          <span>
+            {tags.length > 1 && index !== tags.length - 1 ? `${tag},` : tag}
+          </span>
+        ))
+      }
     </div>
 
     <div class="w-1/12">

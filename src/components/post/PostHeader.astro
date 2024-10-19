@@ -39,7 +39,7 @@ const { title, publishedAt, tags, image, author } = Astro.props.data;
       <span>·</span>
       <Date date={publishedAt} />
       <span>·</span>
-      <div class="flex flex-wrap gap-x-1">
+      <div class="flex flex-wrap font-sans gap-x-1">
         {
           tags.map((tag: string, index) => (
             <span>
