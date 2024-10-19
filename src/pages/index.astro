@@ -1,5 +1,6 @@
 ---
 import { site_config } from "../consts";
+import { Marquee } from "@/components/ui/marquee";
 import Container from "@/components/Container.astro";
 import Layout from "@/layouts/Layout.astro";
 import Link from "@/components/Link.astro";
@@ -53,6 +54,28 @@ const { title, description } = site_config;
           small guide on How to customize the template.
         </p>
       </div>
+    </Container>
+  </Section>
+  <Section>
+    <Container class="px-0 py-0">
+      <Marquee pauseOnHover className="[--duration:20s]">
+        {
+          [
+            "we like it raw",
+            "·",
+            "we like the raw",
+            "·",
+            "life is raw",
+            "·",
+            "raw is good",
+            "·",
+            "raw is food",
+            "·",
+          ].map((slogan) => (
+            <div class="uppercase text-xs font-bold">{slogan}</div>
+          ))
+        }
+      </Marquee>
     </Container>
   </Section>
 </Layout>
