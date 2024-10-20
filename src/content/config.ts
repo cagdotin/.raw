@@ -38,6 +38,7 @@ const authors = defineCollection({
       website: z.string().url(),
       x: z.string().url(),
       github: z.string().url(),
+      dev_to: z.string().url().optional(),
       youtube: z.string().url().optional(),
       linkedin: z.string().url().optional(),
       peerlist: z.string().url().optional(),
