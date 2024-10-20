@@ -1,6 +1,6 @@
 ---
 import { getEntry } from "astro:content";
-import Link from "@/components/Link.astro";
+import { Link } from "@/components/ui/link";
 
 type Props = {
   id: string;
@@ -12,6 +12,6 @@ const author = await getEntry("authors", id);
 const { name, links, avatar } = author!.data;
 ---
 
-<Link href={`/authors/${id}`} class="text-foreground uppercase">
+<Link href={`/authors/${id}`} className="text-foreground uppercase">
   <span>{name}</span>
 </Link>
