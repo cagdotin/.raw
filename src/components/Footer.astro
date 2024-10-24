@@ -1,17 +1,22 @@
 ---
 import Container from "@/components/Container.astro";
 import Section from "@/components/Section.astro";
-import { Link } from "@/components/ui/link";
-
-const today = new Date();
+import Author from "@/components/Author.astro";
+import { Coffee, Heart } from "lucide-react";
+import { SiAstro } from "@icons-pack/react-simple-icons";
 ---
 
 <Section as="footer" class="border-b-0 grow">
-  <Container class="border-b">
-    <p class="text-[0.6em]">
-      &copy;{today.getFullYear()}
-      <Link href="https://x.com/0xcgn" underline external>@0xcgn</Link>. All
-      rights reserved.
+  <Container class="text-xs border-b">
+    <p class="flex items-center gap-1">
+      Crafted with
+      <Coffee className="w-3 h-3" />
+      <span class="ml-[-3px]">,</span>
+      <Heart className="w-3 h-3" />
+      and a lot of
+      <SiAstro className="w-3 h-3" />
+      magic by
+      <Author class="font-semibold" handle />
     </p>
   </Container>
   <Container class="h-12 border-dashed" />

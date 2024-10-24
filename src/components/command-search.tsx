@@ -132,7 +132,7 @@ const Item = ({ command, onSelect, className }: ItemProps) => {
       </div>
       {command.external && <LucideExternalLink className="w-4 h-4" />}
       {command.commandKey && (
-        <CommandShortcut className="uppercase hidden sm:inline-block">
+        <CommandShortcut className="hidden uppercase sm:inline-block">
           ⌘{command.commandKey}
         </CommandShortcut>
       )}

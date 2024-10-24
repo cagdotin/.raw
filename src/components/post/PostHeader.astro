@@ -8,7 +8,7 @@ import type { CollectionEntry } from "astro:content";
 
 type Props = CollectionEntry<"blog">;
 
-const { title, publishedAt, tags, image, author } = Astro.props.data;
+const { title, publishedAt, tags, image } = Astro.props.data;
 ---
 
 <!-- Image -->
@@ -35,7 +35,7 @@ const { title, publishedAt, tags, image, author } = Astro.props.data;
     <div
       class="uppercase text-[0.6em] sm:text-xs font-mono flex gap-x-2 items-center"
     >
-      <Author id={author.id} />
+      <Author class="font-sans" />
       <span>·</span>
       <Date date={publishedAt} />
       <span>·</span>

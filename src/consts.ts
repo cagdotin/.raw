@@ -7,6 +7,7 @@ export const site_config = {
   title: ".raw",
   description:
     ".raw is an opinionated static blogging template built with Astro, Tailwind , and shadcn/ui.",
+  author: "cagin",
   socials: {
     twitter: "https://x.com/cagdotin",
     github: "https://github.com/cagdotin/.raw",
@@ -14,7 +15,6 @@ export const site_config = {
   },
   main_nav: [
     { title: "home", href: "/", Icon: Home },
-    { title: "about", href: "/about", Icon: File },
     { title: "blog", href: "/blog", Icon: SquareMenu },
     { title: "components", href: "/blog/components", Icon: LayoutDashboard },
   ],

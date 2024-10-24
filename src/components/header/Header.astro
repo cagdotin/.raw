@@ -12,18 +12,18 @@ const { title, main_nav } = site_config;
 
 <Section
   as="header"
-  class="sticky z-10 font-mono -top-12 bg-background"
+  class="sticky z-10 -top-12 bg-background"
   transition:persist
 >
   <Container class="h-12 border-dashed" />
   <Container class="py-0 pr-0 border-t">
     <div class="flex items-center justify-between">
       <nav>
-        <h2 class="font-bold"><a href="/">{title}</a></h2>
+        <h2 class="font-mono font-bold"><a href="/">{title}</a></h2>
       </nav>
 
       <nav
-        class="flex h-full font-mono text-xs tracking-wide uppercase jusify-center"
+        class="flex h-full font-sans text-xs font-semibold uppercase jusify-center"
       >
         {
           main_nav.map((link) => (

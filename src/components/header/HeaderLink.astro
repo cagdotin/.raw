@@ -13,7 +13,7 @@ const isActive = href === pathname || href === "/" + subpath?.[0];
 <a
   href={href}
   class:list={[
-    "flex items-center  text-foreground/60 hover:text-foreground/80 px-2",
+    "flex items-center text-foreground/60 hover:text-foreground/80 px-2 transition ease-in-out",
     className,
     { "text-foreground/90": isActive },
   ]}
