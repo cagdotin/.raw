@@ -10,9 +10,6 @@ tags: ["up", "to", "3"]
 footnote: "An optional frontmatter property. Very common!"
 # set this to false to publish.
 draft: true
-# make sure a valid author is created under:
-# /src/content/authors/<author-id>.json
-author: "<author-id>"
 ---
 
 Here comes your content

@@ -6,7 +6,6 @@ image:
   src: "/images/posts/blog-placeholder-1.jpg"
   alt: "Blog placeholder image #1"
 tags: ["guide", "documentation"]
-author: "cagin"
 ---
 
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.

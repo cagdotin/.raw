@@ -18,38 +18,6 @@ const post_tags = z
   .max(3, "Too many tags (3+), less is more my friend. Tag wisely!")
   .default([]);
 
-/**
- * replace .refine(...) with .url()
- * if you are gonna using external source.
- */
-const local_avatar = z
-  .string()
-  .refine((value) => value.startsWith("/images/authors/"));
-
-const authors = defineCollection({
-  loader: file("src/data/authors.json"),
-  schema: z.object({
-    id: z.string(),
-    name: z.string(),
-    bio: z.string(),
-    email: z.string().email(),
-    avatar: local_avatar,
-    links: z.object({
-      website: z.string().url(),
-      x: z.string().url(),
-      github: z.string().url(),
-      dev_to: z.string().url().optional(),
-      youtube: z.string().url().optional(),
-      linkedin: z.string().url().optional(),
-      peerlist: z.string().url().optional(),
-      daily_dev: z.string().url().optional(),
-      roadmap_sh: z.string().url().optional(),
-      meet: z.string().url().optional(),
-      onlyfans: z.string().url().optional(),
-    }),
-  }),
-});
-
 const blog = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/blog" }),
   schema: z
@@ -57,7 +25,6 @@ const blog = defineCollection({
       title: site_title,
       description: site_description,
       tags: post_tags,
-      author: reference("authors"),
       draft: z.boolean().optional(),
       // An optional frontmatter property. Very common!
       footnote: z.string().optional(),
@@ -73,4 +40,4 @@ const blog = defineCollection({
     .strict(),
 });
 
-export const collections = { authors, blog };
+export const collections = { blog };

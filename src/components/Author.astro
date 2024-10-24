@@ -1,17 +1,17 @@
 ---
-import { getEntry } from "astro:content";
 import { Link } from "@/components/ui/link";
+import { site_config } from "@/consts";
+import { cn } from "@/lib/utils";
 
 type Props = {
-  id: string;
+  handle?: boolean;
+  class?: string;
 };
 
-const { id } = Astro.props;
-
-const author = await getEntry("authors", id);
-const { name, links, avatar } = author!.data;
+const { handle, class: className } = Astro.props;
 ---
 
-<Link href={`/authors/${id}`} className="text-foreground uppercase">
-  <span>{name}</span>
+<Link className={cn([className])} href={site_config.socials.twitter} external>
+  {handle ? "@" : ""}
+  {site_config.author}
 </Link>
