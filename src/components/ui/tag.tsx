@@ -1,21 +1,26 @@
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { Link } from "./link";
 
 interface Props {
   tag: string;
+  link?: boolean;
+  hasNext?: boolean;
   className?: string;
 }
 
-export const Tag = ({ tag, className }: Props) => {
+export const Tag = function ({ tag, link, hasNext, className }: Props) {
+  if (link) {
+    return (
+      <Link className={className} href={`/tags/${tag}`}>
+        {tag}
+        {hasNext && ","}
+      </Link>
+    );
+  }
+
   return (
-    <Badge
-      variant="secondary"
-      className={cn([
-        "rounded-sm px-1 font-normal text-xs mt-1 mr-1",
-        className,
-      ])}
-    >
-      #{tag}
-    </Badge>
+    <span className={className}>
+      {tag}
+      {hasNext && ","}
+    </span>
   );
 };
