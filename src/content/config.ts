@@ -40,4 +40,18 @@ const blog = defineCollection({
     .strict(),
 });
 
-export const collections = { blog };
+const projects = defineCollection({
+  loader: file("src/data/projects.json"),
+  schema: z
+    .object({
+      id: z.string(),
+      title: z.string(),
+      description: z.string(),
+      link: z.string().url().optional(),
+      image: z.string(),
+      disabled: z.boolean(),
+    })
+    .strict(),
+});
+
+export const collections = { blog, projects };

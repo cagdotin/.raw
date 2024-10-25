@@ -1,0 +1,31 @@
+[
+    {
+        "id": "raw-core",
+        "title": ".raw/core",
+        "description": "is an opinionated static blogging template built with Astro, Tailwind , and shadcn/ui.",
+        "link": "http://localhost:4321/",
+        "image": "/images/projects/raw-core-yellow.png",
+        "disabled": false
+    },
+    {
+        "id": "raw-cafe",
+        "title": ".raw/cafe",
+        "description": "",
+        "image": "/images/projects/raw-core-green.png",
+        "disabled": true
+    },
+    {
+        "id": "raw-event",
+        "title": ".raw/event",
+        "description": "",
+        "image": "/images/projects/raw-core-2.png",
+        "disabled": true
+    },
+    {
+        "id": "raw-agency",
+        "title": ".raw/agency",
+        "description": "",
+        "image": "/images/projects/blog-placeholder-about.jpg",
+        "disabled": true
+    }
+]
