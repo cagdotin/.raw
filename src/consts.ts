@@ -16,6 +16,10 @@ export const site_config = {
   main_nav: [
     { title: "home", href: "/", Icon: Home },
     { title: "blog", href: "/blog", Icon: SquareMenu },
-    { title: "components", href: "/blog/components", Icon: LayoutDashboard },
+    {
+      title: "docs",
+      href: "/tags/documentation",
+      Icon: LayoutDashboard,
+    },
   ],
 };

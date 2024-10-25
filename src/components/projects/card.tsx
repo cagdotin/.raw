@@ -11,7 +11,7 @@ export const ProjectCard = function ({ data: data }: Props) {
   const { title, description, image, disabled, link } = data;
 
   return (
-    <CarouselItem className="basis-1/2 sm:basis-1/3 pl-0 border-r flex flex-col justify-end">
+    <CarouselItem className="basis-1/2 sm:basis-1/3 pl-0 border-r flex flex-col justify-end bg-background">
       <img src={image} alt={`${title} banner image`} />
 
       <h3 className="font-bold text-sm px-2 py-1">{title}</h3>

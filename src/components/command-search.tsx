@@ -102,7 +102,7 @@ const TriggerButton = (props: ButtonProps) => (
     variant="ghost"
     size="sm"
     className={cn(
-      "relative px-4 border-x w-full justify-start text-xs font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 grow"
+      "relative px-4 border-l-0 sm:border-x w-full justify-start text-xs font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 grow"
     )}
     {...props}
   >

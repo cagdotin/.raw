@@ -111,8 +111,8 @@
   background: linear-gradient(hsl(var(--border)) 1px, transparent 1px),
     hsl(var(--background));
   background-size:
-    16px 16px,
-    16px 16px,
+    8px 8px,
+    8px 8px,
     80px 80px,
     80px 80px,
     80px 80px,
