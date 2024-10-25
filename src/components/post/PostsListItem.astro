@@ -12,7 +12,7 @@ const { title, tags } = data;
 
 <li class="border-b last:border-b-0">
   <Link
-    className="flex flex-row items-center justify-between py-1 pr-1 text-sm transition ease-in-out text-muted-foreground hover:text-foreground hover:translate-x-1"
+    className="group flex flex-row items-center justify-between py-1 pr-1 text-sm duration-150 transition ease-in-out text-muted-foreground hover:text-foreground"
     href={`/blog/${id}`}
   >
     <div class="font-semibold sm:w-7/12 self-start">
@@ -29,7 +29,9 @@ const { title, tags } = data;
       }
     </div>
 
-    <div class="w-1/12">
+    <div
+      class="w-1/12 transition duration-150 ease-in-out group-hover:translate-x-1"
+    >
       <MoveRight className="ml-auto w-4 h-4" />
     </div>
   </Link>
