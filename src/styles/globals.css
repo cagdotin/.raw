@@ -83,3 +83,19 @@
     @apply bg-background text-foreground;
   }
 }
+
+.bg-grid {
+  margin-top: -1px;
+  background: linear-gradient(-90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(hsl(var(--border)) 1px, transparent 1px),
+    hsl(var(--background));
+  background-size:
+    8px 8px,
+    8px 8px,
+    80px 80px,
+    80px 80px,
+    80px 80px,
+    80px 80px,
+    80px 80px,
+    80px 80px;
+}
