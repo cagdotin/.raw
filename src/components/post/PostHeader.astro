@@ -5,7 +5,7 @@ import Container from "@/components/Container.astro";
 import Date from "@/components/Date.astro";
 import Section from "@/components/Section.astro";
 import type { CollectionEntry } from "astro:content";
-import {Tag} from "@/components/ui/tag";
+import { Tag } from "@/components/ui/tag";
 
 type Props = CollectionEntry<"blog">;
 
@@ -31,12 +31,10 @@ const { title, publishedAt, tags, image } = Astro.props.data;
 
 <!-- Header -->
 <Section as="header">
-  <Container>
-    <h1 class="pt-2 pb-4 text-2xl sm:text-3xl">{title}</h1>
-    <div
-      class="uppercase text-[0.6em] sm:text-xs flex gap-x-2 items-center"
-    >
-      <Author />
+  <Container class="heading-w-lines">
+    <h1 class="text-3xl leading-[32px] mt-[7px]">{title}</h1>
+    <div class="mt-[13px] mb-[16px] uppercase text-xs flex gap-x-2 items-start">
+      <Author class="hover:underline" />
       <span>·</span>
       <Date date={publishedAt} />
       <span>·</span>
@@ -44,15 +42,14 @@ const { title, publishedAt, tags, image } = Astro.props.data;
         {
           tags.map((tag: string, index) => (
             <Tag
-                className="hover:underline"
-                hasNext={index < tags.length -1}
-                tag={tag}
-                link
+              className="hover:underline"
+              hasNext={index < tags.length - 1}
+              tag={tag}
+              link
             />
           ))
         }
       </div>
     </div>
-
   </Container>
 </Section>
