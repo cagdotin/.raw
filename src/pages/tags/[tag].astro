@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Container from "@/components/Container.astro";
-import Layout from "@/layouts/Layout.astro"
+import Layout from "@/layouts/Layout.astro";
 import PostsListItem from "@/components/post/PostsListItem.astro";
 import Section from "@/components/Section.astro";
 import type { CollectionEntry } from "astro:content";
@@ -26,24 +26,20 @@ const { tag } = Astro.params;
 const { posts } = Astro.props;
 
 const breadcrumbs = [{ href: "/tags", label: "Tags" }, { label: tag }];
-
 ---
 
 <Layout title={tag} description="tags" breadcrumbs={breadcrumbs}>
-    <Section>
+  <Section>
     <Container class="heading-w-lines">
-        <h1 class="flex flex-col">
-            Posts tagged with
-            <span class="leading-[20px] pt-[11px]">{tag}</span>
-        </h1>
+      <h1 class="flex flex-col">
+        Posts tagged with
+        <span class="leading-[20px] pt-[11px]">{tag}</span>
+      </h1>
     </Container>
     <Container>
-
-        <ul class="flex flex-col  list-none">
-            {posts.map(post => (
-              <PostsListItem {...post} />
-            ))}
-        </ul>
+      <ul class="flex flex-col list-none">
+        {posts.map((post) => <PostsListItem {...post} />)}
+      </ul>
     </Container>
-    </Section>
+  </Section>
 </Layout>

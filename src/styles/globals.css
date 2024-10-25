@@ -86,12 +86,33 @@
 
 .bg-grid {
   margin-top: -1px;
-  background: linear-gradient(-90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+  background: linear-gradient(-90deg, hsl(var(--border)) 1px, transparent 1px),
     linear-gradient(hsl(var(--border)) 1px, transparent 1px),
     hsl(var(--background));
   background-size:
     8px 8px,
     8px 8px,
+    80px 80px,
+    80px 80px,
+    80px 80px,
+    80px 80px,
+    80px 80px,
+    80px 80px;
+}
+
+.heading-w-lines {
+  @apply font-bold uppercase border-b;
+  margin-top: -1px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-size: 21px;
+  line-height: 21px;
+
+  background: linear-gradient(hsl(var(--border)) 1px, transparent 1px),
+    hsl(var(--background));
+  background-size:
+    16px 16px,
+    16px 16px,
     80px 80px,
     80px 80px,
     80px 80px,

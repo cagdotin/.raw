@@ -1,8 +1,8 @@
 ---
-import { Link } from "@/components/ui/link";
 import { MoveRight } from "lucide-react";
-import { Tag } from "@/components/ui/tag";
+import { Link } from "@/components/ui/link";
 import type { Post } from "@/lib/post-utils";
+import { Tag } from "@/components/ui/tag";
 
 type Props = Post;
 
@@ -15,7 +15,7 @@ const { title, tags } = data;
     className="flex flex-row items-center justify-between py-1 pr-1 text-sm transition ease-in-out text-muted-foreground hover:text-foreground hover:translate-x-1"
     href={`/blog/${id}`}
   >
-    <div class="font-semibold sm:w-7/12">
+    <div class="font-semibold sm:w-7/12 self-start">
       {title}
     </div>
 
