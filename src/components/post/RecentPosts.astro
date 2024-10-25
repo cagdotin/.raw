@@ -15,6 +15,6 @@ const recent_posts = posts
   .slice(0, count);
 ---
 
-<ul class="flex flex-col py-4 border-y list-none">
+<ul class="flex flex-col list-none">
   {recent_posts.map((post) => <PostsListItem {...post} />)}
 </ul>

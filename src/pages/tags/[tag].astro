@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 
-const breadcrumbs = [{ href: "/tags", label: "Tags" }, { label: tag }];
+const breadcrumbs = [{ label: "Tags" }, { label: tag }];
 ---
 
 <Layout title={tag} description="tags" breadcrumbs={breadcrumbs}>
