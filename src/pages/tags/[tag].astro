@@ -30,10 +30,10 @@ const breadcrumbs = [{ label: "Tags" }, { label: tag }];
 
 <Layout title={tag} description="tags" breadcrumbs={breadcrumbs}>
   <Section>
-    <Container class="heading-w-lines border-b">
-      <h1 class="flex flex-col">
-        Posts tagged with
-        <span class="leading-[20px] pt-[11px]">{tag}</span>
+    <Container class="uppercase font-bold border-b">
+      <h1 class="text-sm">
+        all posts tagged as: <br />
+        <span class="text-2xl font-sans">{tag}</span>
       </h1>
     </Container>
     <Container>
